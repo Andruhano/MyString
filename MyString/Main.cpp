@@ -39,5 +39,32 @@ int main()
 
     cout << "Number of MyString objects: " << MyString::getObjectCount() << endl;
 
+    MyString str9("Hello");
+    MyString str10(" World");
+
+    str9[1] = 'a';
+    cout << "After using operator[]: " << str9 << endl;
+
+    str9("New String");
+    cout << "After using method (): " << str9 << endl;
+
+    MyString result1 = str9 + 'A';
+    cout << "Result of obj + 'A': " << result1 << endl;
+
+    MyString result2 = 'A' + str9;
+    cout << "Result of 'A' + obj: " << result2 << endl;
+
+    MyString result3 = 10 + str9;
+    cout << "Result of 10 + obj: " << result3 << endl;
+
+    MyString result4 = str9 + 10;
+    cout << "Result of obj + 10: " << result4 << endl;
+
+    //MyString result5 = ++str9;
+    //cout << "Result of obj++: " << result5 << endl;
+
+    //MyString result6 = ++str9;
+    //cout << "Result of ++obj: " << result6 << endl;
+
     return 0;
 }

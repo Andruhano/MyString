@@ -149,3 +149,75 @@ istream& operator>>(istream& is, MyString& myStr)
     myStr.length = strlen(myStr.str);
     return is;
 }
+
+char& MyString::operator[](int index)
+{
+    if (index >= 0 && index < length)
+    {
+        return str[index];
+    }
+}
+
+void MyString::operator()(const char* inputStr) 
+{
+    delete[] str;
+    length = strlen(inputStr);
+    str = new char[length + 1];
+    strcpy(str, inputStr);
+}
+
+MyString MyString::operator+(char ch) const 
+{
+    MyString result(length + 1);
+    strcpy(result.str, str);
+    result.str[length] = ch;
+    result.str[length + 1] = '\0';
+    return result;
+}
+
+MyString operator+(char ch, const MyString& obj) 
+{
+    MyString result(obj.length + 1);
+    result.str[0] = ch;
+    strcpy(result.str + 1, obj.str);
+    return result;
+}
+
+MyString MyString::operator+(int num) const 
+{
+    MyString result(length + num);
+    strcpy(result.str, str);
+    for (int i = length; i < result.length; i++) 
+    {
+        result.str[i] = 'x';
+    }
+    result.str[result.length] = '\0';
+    return result;
+}
+
+MyString operator+(int num, const MyString& obj) 
+{
+    MyString result(obj.length + num);
+    for (int i = 0; i < num; i++) 
+    {
+        result.str[i] = 'x';
+    }
+    strcpy(result.str + num, obj.str);
+    return result;
+}
+
+/*MyString MyString::operator++(int)
+{
+    MyString temp(*this);  
+    char randomChar = 'X';  
+    *this = *this + randomChar;  
+    return temp;  
+}*/
+
+/*MyString MyString::operator++()
+{
+    char randomChar = 'X';
+    *this = randomChar + *this;
+    return *this;
+}
+*/
