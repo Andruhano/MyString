@@ -225,3 +225,27 @@ MyString& MyString::operator=(const MyString& other)
     }
     return *this;
 }
+
+MyString::MyString(MyString&& other) : str(nullptr), length(0) 
+{
+    str = other.str;
+    length = other.length;
+
+    other.str = nullptr;
+    other.length = 0;
+}
+
+MyString& MyString::operator=(MyString&& other) 
+{
+    if (this != &other) 
+    {
+        delete[] str;
+
+        str = other.str;
+        length = other.length;
+
+        other.str = nullptr;
+        other.length = 0;
+    }
+    return *this;
+}

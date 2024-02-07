@@ -41,4 +41,7 @@ public:
     friend MyString operator+(int num, const MyString& obj);  
     //MyString operator++(int);  
     //MyString operator++();  
+
+    MyString(MyString&& other);
+    MyString& operator=(MyString&& other);
 };

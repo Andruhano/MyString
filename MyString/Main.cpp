@@ -94,6 +94,23 @@ int main()
     str11 = str9; 
     cout << "Copy using operator=: ";
     str10.operator<<(cout);
+    cout << endl;
+
+    MyString str12("Hello");
+    cout << "str12: ";
+    str12.operator<<(cout);
+    cout << endl;
+
+    MyString str13 = move(str12);
+    cout << "str13 (after move): ";
+    str13.operator<<(cout);
+    cout << endl;
+
+    cout << "str12 (after move): ";
+    str12.operator<<(cout);
+    cout << endl;
+    // ошибка консоли из-за вывода пусто1 строки
 
     return 0;
 }
+
