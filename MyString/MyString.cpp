@@ -47,18 +47,6 @@ void MyString::displayString() const
     cout << str;
 }
 
-MyString& MyString::operator=(const MyString& other) 
-{
-    if (this != &other) 
-    {
-        delete[] str;
-        length = other.length;
-        str = new char[length + 1];
-        strcpy(str, other.str);
-    }
-    return *this;
-}
-
 MyString MyString::operator+(const MyString& other) const 
 {
     MyString result(length + other.length);
@@ -137,18 +125,20 @@ int MyString::getObjectCount()
     return objectCount;
 }
 
-ostream& operator<<(ostream& os, const MyString& myStr) 
+ostream& MyString::operator<<(ostream& os) const 
 {
-    os << myStr.str;
+    os << str;
     return os;
 }
 
-istream& operator>>(istream& is, MyString& myStr) 
+istream& MyString::operator>>(istream& is) 
 {
-    is.getline(myStr.str, myStr.length);
-    myStr.length = strlen(myStr.str);
+    char buffer[1000]; 
+    is.getline(buffer, 1000); 
+    *this = buffer; 
     return is;
 }
+
 
 char& MyString::operator[](int index)
 {
@@ -221,3 +211,17 @@ MyString operator+(int num, const MyString& obj)
     return *this;
 }
 */
+
+MyString& MyString::operator=(const MyString& other) 
+{
+    if (this != &other) 
+    {
+        delete[] str;
+
+        length = other.length;
+        str = new char[length + 1];
+
+        strcpy(str, other.str);
+    }
+    return *this;
+}

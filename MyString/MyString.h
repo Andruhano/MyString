@@ -29,8 +29,9 @@ public:
 
     static int getObjectCount();
 
-    friend ostream& operator<<(ostream& os, const MyString& myStr);
-    friend istream& operator>>(istream& is, MyString& myStr);
+    ostream& operator<<(ostream& os) const;
+
+    istream& operator>>(istream& is);
 
     char& operator[](int index);  
     void operator()(const char* inputStr);  
